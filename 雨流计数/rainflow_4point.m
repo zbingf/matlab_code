@@ -1,5 +1,6 @@
 clear;clc
 % C=xlsread('load_F1');%%%%%%%%%在此修改加载的文件名，数据格式一直才可正确运算%%%
+% rand(1,1000)*5  % 随机生成数组
 load('test_data.mat')
 C = test_data';
 B=C;A=C;
