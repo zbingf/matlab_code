@@ -1,0 +1,125 @@
+clear,clc
+%>>>>>>>>>>>>>>>导入MR数据>>>>>>>>>>>>>>>>>>>>>>>>>>>
+dizhi=uigetdir;
+load([dizhi '\' 'WT_R.mat'],'WT_R');
+load([dizhi '\' 'MR_R.mat'],'MR_R');
+load([dizhi '\' 'WT_F.mat'],'WT_F');
+load([dizhi '\' 'MR_F.mat'],'MR_F');
+% load([dizhi '\' 'MR_BR.mat'],'MR_BR');
+% load([dizhi '\' 't9.mat'],'t9');
+load([dizhi '\' 'length_R.mat'],'length_R');
+load([dizhi '\' 'length_F.mat'],'length_F');
+WT_R=WT_R(2:size(WT_R,1),1);%后悬轮跳，保持相同数组
+WT_F=WT_F(2:size(WT_F,1),1);%前悬轮跳，保持相同数组
+length_R=length_R(2:size(length_R,1),1);%前悬轮跳，保持相同数组
+length_F=length_F(2:size(length_F,1),1);%前悬轮跳，保持相同数组
+
+%侧倾刚度 N*mm/deg
+%质量 kg
+%长度 mm
+%加速度 mm/s^2
+%速度 mm/s
+%刚度 N/mm
+%!!!计算核心：单位匹配（用此查错）
+%>>>>>基础数据>>>>>单位（ 长度m 质量kg 速度m/s 加速度g）>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Wbcw=230;% kg 空载质量
+Wd=68;% kg 车手质重
+aa=0.45;%载荷-前轴-分配
+bb=1-aa;%载荷-后轴-分配
+
+tF=1180;%mm 前轮距
+tR=1160;%mm 后轮距
+l=1580;%mm 轴距
+h=300;%mm 质心高度
+zRF=45;%mm 假定前侧倾中心45mm
+zRR=60;%mm 后侧倾中心60mm
+hUSF=228.6;%m 前簧下质心高
+hUSR=228.6;%m 后簧下质心高
+%>>>>>>>>>单轴簧下质量>>>>>>
+WUSF=20.329478;% kg 前轴簧下
+WUSR=20.729478;% kg 后轴簧下
+%>>>>>工况>>>>>>>水平路面无倾角
+R=-9125;%半径 -9.125
+V=48.1449/3.6;%(m/s) 41.9518 
+AY=V*V/R/9.8*1000;%Horizontal lateral acceleration (g)
+%>>>>>>>>>总质量>>>>>>>>>>>>>>>>>>>>>>>>>>
+WT=Wbcw+Wd;%总质量
+WF=WT.*aa;%前轴总质量
+WR=WT.*bb;%后轴总质量
+%>>>>>>>>>单轮簧上质量>>>>>>>>>
+WSFO=(WF-WUSF)./2;%kg
+WSFI=(WF-WUSF)./2;%kg
+WSRO=(WR-WUSR)./2;%kg
+WSRI=(WR-WUSR)./2;%kg
+%>>>>>>>>>单轴簧上质量>>>>>>>
+WSF=WSFO+WSFI;%kg
+WSR=WSRO+WSRI;%kg
+%>>>>>>>>>总簧上质量>>>>>>>>>
+WTS=WT-WUSF-WUSR;%kg
+%>>>>簧上质量重心高度>>>>>>.
+hS=(WT.*h-WUSF.*hUSF-WUSR.*hUSR)./WTS;%mm
+hSRD=hS-(zRF+(zRR-zRF.*(1-WSF./WTS))).*l./(l.^2+(zRR-zRF).^2).^0.5;%mm
+%>>>>>>>>>>侧倾梯度（deg/g）>>>>>>>>>>>>>>>>>>>>
+RG=0.5;%（deg/g） 目标值
+a=0.5;%载荷转移比例
+Kfai=(WTS*9.8*hSRD)/RG;%（N.mm/deg）算的簧上质量
+Tave=(tR+tF)/2;%mm
+TL=WT*h/Tave;%total load transfer  （kg/g） 每个g的载荷转移量
+KfaiF=(a*TL*tF-WSF*zRF-WUSF*hUSF)*9.8/RG;%（N.mm/deg） front roll stiffness前悬侧倾刚度 4.20改
+KfaiR=Kfai-KfaiF;%后悬侧倾刚度 （N.m/deg）
+%>>>>>>>>>>载荷转移>>>>>>>>>>>>>>>>>
+KfaiFp=KfaiF-aa.*WTS*9.8.*hSRD/180*pi;
+KfaiRp=KfaiR-bb.*WTS*9.8.*hSRD/180*pi;
+deltWF=AY.*(WTS./tF.*(hSRD.*KfaiFp./(KfaiF+KfaiR-WTS*9.8.*hSRD/180*pi)+aa.*zRF)+WUSF.*hUSF./tF); %重点审核
+deltWR=AY.*(WTS./tR.*(hSRD.*KfaiRp./(KfaiF+KfaiR-WTS*9.8.*hSRD/180*pi)+bb.*zRF)+WUSR.*hUSR./tR);
+%车轮载荷  kg
+WFO=WF./2-deltWF;
+WRO=WR./2-deltWR;
+WFI=WF./2+deltWF;
+WRI=WR./2+deltWR;
+%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+%>>>>>>>>>>>>>>>前悬>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%定弹簧刚度，求MR
+KSF=78.75;% N/mm 前螺旋弹簧刚度
+KTF=94.1543;%轮胎垂向刚度 N/mm  94.1543 
+KWSF=KSF.*MR_F.^2;
+KRSF=(KWSF*KTF)./(KTF+KWSF);%N/mm 弹簧提供的轮心线刚度
+KfaiSF=KRSF*tF^2/2/180*pi;%（N.mm/deg）
+%>>>>>>>>>>>>>>>后悬>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%定弹簧刚度，求MR
+KSR=78.75;% N/mm 后螺旋弹簧刚度
+KTR=94.1543;%轮胎垂向刚度 N/mm  94.1543 
+KWSR=KSR.*MR_R.^2;
+KRSR=(KWSR*KTR)./(KTR+KWSR);%N/mm 弹簧提供的轮心线刚度
+KfaiSR=KRSR*tR^2/2/180*pi;%（N.mm/deg）
+%>>>>>>>>>>>>>>>>>>>前悬>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+length_Fwt=max(WT_F)-min(WT_F);%总行程
+buchang_F=length_Fwt/length(MR_F);%步长
+sum_F=0;
+for n=length(MR_F)/2:-1:1
+    sum_F=KRSF(n)*buchang_F+sum_F;
+     if sum_F<=WF/2*9.8
+         n_F=n;
+     end
+end
+fprintf('前悬轮胎下跳量 %d mm\n',WT_F(length(MR_F)/2)-WT_F(n_F));%整车落地到静载，轮胎上跳量
+fprintf('前悬静载时弹簧压缩量 %d mm\n',length_F(n_F)-length_F(length(MR_F)/2));%整车落地到静载，轮胎上跳量
+fprintf('前悬下跳极限阻尼长 %d mm\n',length_F(n_F));%
+fprintf('前悬静载时阻尼长 %d mm\n',length_F(length(MR_F)/2));%
+
+%>>>>>>>>>>>>>>>>>>>后悬>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+length_Rwt=max(WT_R)-min(WT_R);%总行程
+buchang_R=length_Rwt/length(MR_R);%步长
+sum_R=0;
+for n=length(MR_R)/2:-1:1
+    sum_R=KRSR(n)*buchang_R+sum_R;
+     if sum_R<=WR/2*9.8
+         n_R=n;
+     end
+end
+fprintf('\n后悬轮胎下跳量 %d mm\n',WT_R(length(MR_R)/2)-WT_R(n_R));%整车落地到静载，轮胎上跳量
+fprintf('后悬静载时弹簧压缩量 %d mm\n',length_R(n_R)-length_R(length(MR_R)/2));%整车落地到静载，轮胎上跳量
+fprintf('后悬下跳极限阻尼长 %d mm\n',length_R(n_R));%
+fprintf('后悬静载时阻尼长 %d mm\n',length_R(length(MR_R)/2));%
+

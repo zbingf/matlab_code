@@ -1,0 +1,257 @@
+================================================================================
+LEAF_SPRING_TEMPLATE_NEW         TEMPLATE FOR THE LEAF SPRING EDITOR
+--------------------------------------------------------------------------------
+(Note: All input information must be in Left-Justified format.)
+
+================================================================================
+UNITS
+--------------------------------------------------------------------------------
+LENGTH       =  mm
+MASS         =  kilogram
+FORCE        =  newton
+TIME         =  second
+ANGLE        =  degree
+
+
+
+================================================================================
+TITLE
+--------------------------------------------------------------------------------
+
+Example leaf spring file
+
+
+
+
+
+
+================================================================================
+GENERAL INFORMATION
+--------------------------------------------------------------------------------
+2           = No. of Leaves
+.1          = Frictional Coefficient
+1.1         = Impact Exponent
+1.0         = Impact Distance
+100000.0    = Impact Stiffness
+20.0        = Impact Damping Coefficient
+0.1         = Impact Boundary Penetration
+1           = Leaf Spring ID Number (pick 1-REAR, 2-FRONT, 3-OTHER )
+1           = Flag for fitting algorithm (1-2nd poly, 2-3rd poly)
+1           = Flag for contact algorithm (1-impact w/frict)
+LINEAR      = Beam Formulation (LINEAR, NONLINEAR, OR STRING)
+
+
+SUSPENSION BRACKET ATTACHMENT POINT (ADAMS Coordinate)
+--------------------------------------------------------------------------------
+
+                                                  POINT  LOCATIONS
+
+                                        LEFT  (mm)                RIGHT  (mm)
+GEOMETRY HARDPOINT                 X        Y       Z         X        Y      Z
+------------------------------   ------------------------  ------------------------
+Front Leaf Eye Bushing     1-2   -6.2378E+02 -4.0005E+02 8.0413E+01 -6.2378E+02 4.0005E+02 8.0413E+01
+Shackle to Frame         20-21   7.1809E+02 -4.0005E+02 1.7396E+02 7.1809E+02 4.0005E+02 1.7396E+02
+
+
+AXLE INFORMATION
+--------------------------------------------------------------------------------
+0.5         = Extra Mass on the Dummy Axle (U-bolts, spacers, etc.)
+80          = Reference Marker to Leafpack (bot-OVERSLUG, top-UNDERSLUG)
+100         = Front Inactive Length (mm)
+45          = Rear  Inactive Length (mm)
+-90         = Reference Marker Height at Design Load
+OVERSLUNG   = Axle  Mount Type (UNDERSLUG OR OVERSLUG)
+-100        = Rise to Curb (mm)
+
+
+SHACKLE INFORMATION
+--------------------------------------------------------------------------------
+93.8        = Shackle Length
+0.73        = Shackle Mass (kg)
+36.7        = Shackle Inertia: Ixx (kg*mm**2)     (when it's laid in flat pos.)
+881.0       = Shackle Inertia: Iyy (kg*mm**2)     (x-dir. is its pointing dir.)
+881.0       = Shackle Inertia: Izz (kg*mm**2)
+REAR        = Shackle Location (FRONT or REAR)
+COMPRESSION = Shackle Position (COMPRESSION(above leaf) or TENSION(below leaf))
+
+
+LEAF EYEHOOK INFORMATION
+--------------------------------------------------------------------------------
+60          = Front Eyehook Inner Diameter (mm)
+60          = Rear  Eyehook Inner Diameter (mm)
+UPTURNED    = Front Eyehook Shape (BERLIN, UPTURNED, OR DOWNTURNED)
+UPTURNED    = Rear  Eyehook Shape (BERLIN, UPTURNED, OR DOWNTURNED)
+
+
+CLIP INFORMATION
+--------------------------------------------------------------------------------
+0           = No. of clips
+
+CLIP 1
+
+            = Distance from center bolt (+ve fore)
+            = Leaf Number at bottom of clip
+            = Leaf Number at top of clip
+            = Vertical inside height of clip
+            = Vertical clip cover height
+            = Vertical clip cover stiffness
+            = Lateral inside width of clip
+            = Lateral clip cover thickness
+            = Lateral clip cover stiffness
+--------------------------------------------------------------------------------
+
+BUSHING INFORMATION
+Subsystem File = temp_leaf_subsystem.xml
+(Note: When the subsystem file is specified, only the Leaf-to-Leaf Bushing values from this file are used.)
+(Note:  The other bushing values are picked from the subsystem file.)
+--------------------------------------------------------------------------------
+                                    SPRING RATES (TRANSLATIONAL AND ROTATIONAL)
+
+                                          RATE  (N/mm)                   RATE (N-mm/rad)
+                                     RADIAL   RADIAL  AXIAL          CONICAL CONICAL TORSIONAL
+BUSHINGS (RATES)          PT          (X)      (Y)     (Z)             (X)      (Y)       (Z)
+----------------------------   --------------------------------   --------------------------------
+Front Leaf Eye Bushing   1-2   6500.0     6500.0     630.0        3.00E+06   3.00E+06   8.14E+04  
+Leaf Spring to Shackle   7-8   7000.0     7000.0     1000.0       3.00E+06   3.00E+06   8.14E+04  
+Shackle to Frame       20-21   7000.0     7000.0     1000.0       1.0E+07    1.0E+07    8.14E+04  
+Leaf-to-Leaf Bushing     1-1   0.0000E+00 0.0000E+00 0.0000E+00 0.0000E+00 0.0000E+00 0.0000E+00
+
+
+                                DAMPING RATES (TRANSLATIONAL AND ROTATIONAL)
+
+                                      DAMPING  (N-s/mm)               DAMPING (N-s/rad)
+                                    RADIAL   RADIAL  AXIAL         CONICAL CONICAL TORSIONAL
+BUSHINGS (DAMPING)        PT         (X)      (Y)     (Z)             (X)     (Y)      (Z)
+----------------------------   --------------------------------   --------------------------------
+Front Leaf Eye Bushing   1-2   60.0       60.0       6.0          1000.0     1000.0     100.0     
+Leaf Spring to Shackle   7-8   60.0       60.0       6.0          1000.0     1000.0     100.0     
+Shackle to Frame       20-21   60.0       60.0       6.0          10000.0    10000.0    100.0     
+Leaf-to-Leaf Bushing     1-1   0.0000E+00 0.0000E+00 0.0000E+00 0.0000E+00 0.0000E+00 0.0000E+00
+
+
+================================================================================
+LEAF # 1
+--------------------------------------------------------------------------------
+680.0       = Front Leaf Length (mm)
+700.0       = Rear  Leaf Length (mm)
+6           = No. of Elements per Front Leaf (<= 45)
+7           = No. of Elements per Rear  Leaf (<= 45)
+22.5        = Seat (Leaf Center) Thickness (mm)
+76.0        = Seat (Leaf Center) Width (mm)
+200000.0    = Material Properties: Emod
+79000.0     = Material Properties: Gmod
+7.86e-06    = Material Properties: Density (kg/mm**3)
+0.1         = Material Properties: Damping
+1.2         = ASY
+1.2         = ASZ
+0           = Leaf Profile to Copy (0 if data is included below)
+1           = 1, if every point is to be used for fitting,
+              0, if First and Last points are the bushing points
+             (If " 1 " is chosen, the shackle bushing point is to be estimated.)
+0.0         = Z-offset leaf
+
+
+
+          X             Z         Thickness
+     -----------   -----------   -----------
+            -650          53.0            14 
+            -550          37.7               
+         -486.13          29.3               
+          -451.5          25.1               
+         -383.58          18.0               
+         -352.91          15.1               
+         -276.92           9.1               
+         -242.13           6.9               
+         -167.64           3.2               
+         -131.96           1.9               
+          -65.21           0.4               
+          -27.11           0.0               
+               0           0.0          22.5 
+           21.05           0.1               
+           61.97           0.7               
+          136.52           2.8               
+          175.23           4.5               
+          248.37           8.8               
+          283.46          11.3               
+          353.76          17.3               
+          388.92          20.8               
+          457.23          28.5               
+          494.53          33.3               
+          558.79          42.3               
+          593.31          47.5               
+             620          51.8               
+             640          55.2               
+             660          58.6            14 
+             680          62.2            14 
+
+(Note:  The X value at the Center LEAF must be 0.0)
+(Note:  The Front LEAF must be in negative X-axis.)
+
+================================================================================
+LEAF # 2
+--------------------------------------------------------------------------------
+0           = Auxiliary Leaf Flag
+2           = No. of Front Contact Points ( <= # of elements*2 )
+2           = No. of Rear  Contact Points ( <= # of elements*2 )
+2.54        = Center    Gap Distance between Leaf #1 And #2 (liner thick.) (mm)
+2.54        = Front     Gap Distance between Leaf #1 And #2 (liner thick.) (mm)
+2.54        = Rear      Gap Distance between Leaf #1 And #2 (liner thick.) (mm)
+680.0       = Front Leaf Length (mm)
+700.0       = Rear  Leaf Length (mm)
+7           = No. of Elements per Front Leaf (<= 45)
+8           = No. of Elements per Rear  Leaf (<= 45)
+22.5        = Seat (Leaf Center) Thickness (mm)
+76.0        = Seat (Leaf Center) Width (mm)
+200000.0    = Material Properties: Emod
+79000.0     = Material Properties: Gmod
+7.86e-06    = Material Properties: Density (kg/mm**3)
+0.1         = Material Properties: Damping
+1.2         = ASY
+1.2         = ASZ
+0           = Leaf Profile to Copy (0 if data is included below)
+-25.4       = Z-offset leaf
+
+
+
+          X             Z         Thickness
+     -----------   -----------   -----------
+            -665          46.6            14 
+         -511.82          27.3               
+         -481.94          24.1               
+         -454.45          21.4               
+         -416.25          17.8               
+         -384.29          15.1               
+         -350.96          12.5               
+         -317.55          10.1               
+         -277.57           7.6               
+         -245.72           5.9               
+         -212.85           4.3               
+          -172.3           2.7               
+         -138.29           1.7               
+          -95.14           0.7               
+          -61.68           0.2               
+               0           0.0          22.5 
+           61.67           0.6               
+          102.13           1.5               
+          133.11           2.3               
+          174.06           3.9               
+          216.01           5.8               
+          246.34           7.4               
+          290.07          10.1               
+          332.62          13.2               
+           367.6          16.0               
+          402.55          19.0               
+          435.29          22.1               
+          466.02          25.3               
+          504.65          29.5               
+          535.67          33.2               
+          561.02          36.3               
+          611.26          42.9               
+             620          44.1               
+             640          47.0               
+             660          49.9            14 
+             680          52.9            14 
+
+(Note:  The X value at the Center LEAF must be 0.0)
+(Note:  The Front LEAF must be in negative X-axis.)
+

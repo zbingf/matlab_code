@@ -1,0 +1,443 @@
+$---------------------------------------------------------------------MDI_HEADER
+[MDI_HEADER]
+ FILE_TYPE     =  'sub'
+ FILE_VERSION  =  7.0
+ FILE_FORMAT   =  'ASCII'
+$---------------------------------------------------------------SUBSYSTEM_HEADER
+[SUBSYSTEM_HEADER]
+ TEMPLATE_NAME  =  'mdids://fsae_2012/templates.tbl/_fsae_frontsusp.tpl'
+ MAJOR_ROLE     =  'suspension'
+ MINOR_ROLE     =  'front'
+ TIMESTAMP      =  '2017/12/02,17:40:52'
+$--------------------------------------------------------------------------UNITS
+[UNITS]
+ LENGTH  =  'mm'
+ FORCE   =  'newton'
+ ANGLE   =  'deg'
+ MASS    =  'kg'
+ TIME    =  'sec'
+$----------------------------------------------------------------------HARDPOINT
+[HARDPOINT]
+{hardpoint_name                  symmetry         x_value    y_value    z_value}
+ 'camber_adj_orient           '  'single    '     -512.0         0.0        27.4
+ 'BC_axis                     '  'left/right'     -359.6      -254.0       333.0
+ 'BC_center                   '  'left/right'     -359.6      -254.0       434.6
+ 'damper_inboard              '  'left/right'     -131.0      -203.2       472.7
+ 'damper_outboard             '  'left/right'     -385.0      -203.2       472.2
+ 'lca_front                   '  'left/right'     -766.0      -219.1       21.85
+ 'lca_outer                   '  'left/right'     -512.0      -716.0        27.4
+ 'lca_rear                    '  'left/right'     -258.0      -219.1       21.85
+ 'prod_inboard                '  'left/right'     -435.8      -254.0       447.3
+ 'prod_outboard               '  'left/right'     -461.2      -689.0         2.8
+ 'ride_height                 '  'left/right'     -766.0      -219.1       21.85
+ 'tierod_inner                '  'left/right'     -415.0      -304.8        77.4
+ 'tierod_outer                '  'left/right'     -415.0      -650.0        77.4
+ 'uca_front                   '  'left/right'     -766.0     -200.05      263.15
+ 'uca_outer                   '  'left/right'     -512.0      -614.1       283.0
+ 'uca_rear                    '  'left/right'     -258.0     -200.05      263.15
+ 'wheel_center                '  'left/right'     -512.0      -700.0       155.2
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'BC'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.0752879478
+$ Part location is dependent.
+$   X,Y,Z location = -393.4666666667, -237.0666666667, 451.3666666667
+ PART_ORI_ZP1             =  0.0
+ PART_ORI_ZP2             =  0.0
+ PART_ORI_ZP3             =  1.0
+ PART_ORI_XP1             =  1.0
+ PART_ORI_XP2             =  0.0
+ PART_ORI_XP3             =  0.0
+ CM_LOCATION_FROM_PART_X  =  0.032443604
+ CM_LOCATION_FROM_PART_Y  =  2.8047101056
+ CM_LOCATION_FROM_PART_Z  =  -1.6957749686
+ IXX                      =  57.872849096
+ IYY                      =  22.6522825693
+ IZZ                      =  50.1341351864
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$-------------------------------------------------------------------ARM_GEOMETRY
+[ARM_GEOMETRY]
+ USAGE       =  'BC'
+ PART        =  'BC'
+ SYMMETRY    =  'left/right'
+ THICKNESS   =  9.525
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'damper_inboard'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.45359237
+$ Part location is dependent.
+$   X,Y,Z location = -131.0, -203.2, 472.7
+$ Part orientation is dependent.
+$   ZP vector = 0.0,  0.0,  1.0
+$   XP vector = 1.0,  0.0,  0.0
+ CM_LOCATION_FROM_PART_X  =  0.0
+ CM_LOCATION_FROM_PART_Y  =  0.0
+ CM_LOCATION_FROM_PART_Z  =  0.0
+ IXX                      =  292.6396534292
+ IYY                      =  292.6396534292
+ IZZ                      =  292.6396534292
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'damper_outboard'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.45359237
+$ Part location is dependent.
+$   X,Y,Z location = -385.0, -203.2, 472.2
+$ Part orientation is dependent.
+$   ZP vector = 0.9999980625,  0.0,  0.0019685001
+$   XP vector = 0.0019685001,  -1.8369701987E-16,  -0.9999980625
+ CM_LOCATION_FROM_PART_X  =  0.0
+ CM_LOCATION_FROM_PART_Y  =  0.0
+ CM_LOCATION_FROM_PART_Z  =  0.0
+ IXX                      =  292.6396534292
+ IYY                      =  292.6396534292
+ IZZ                      =  292.6396534292
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'lower_control_arm'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.6282116191
+$ Part location is dependent.
+$   X,Y,Z location = -512.0, -384.7333333333, 23.7
+$ Part orientation is dependent.
+$   ZP vector = 0.0,  -0.9999376298,  0.0111685527
+$   XP vector = -1.0,  1.3677532336E-18,  1.2245704176E-16
+ CM_LOCATION_FROM_PART_X  =  -4.3671158022
+ CM_LOCATION_FROM_PART_Y  =  0.0
+ CM_LOCATION_FROM_PART_Z  =  57.9778343743
+ IXX                      =  8151.6347917693
+ IYY                      =  12067.158411
+ IZZ                      =  3942.9687664704
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$------------------------------------------------------------------LINK_GEOMETRY
+[LINK_GEOMETRY]
+ USAGE       =  'lca_front'
+ PART        =  'lower_control_arm'
+ SYMMETRY    =  'left/right'
+ RADIUS      =  9.525
+$------------------------------------------------------------------LINK_GEOMETRY
+[LINK_GEOMETRY]
+ USAGE       =  'lca_rear'
+ PART        =  'lower_control_arm'
+ SYMMETRY    =  'left/right'
+ RADIUS      =  9.525
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'prod'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.1240117647
+$ Part location is dependent.
+$   X,Y,Z location = -448.5, -471.5, 225.05
+$ Part orientation is dependent.
+$   ZP vector = -0.0408061531,  -0.6988455347,  -0.7141076785
+$   XP vector = -0.9983713344,  -3.8857805862E-16,  0.0570497905
+ CM_LOCATION_FROM_PART_X  =  0.0
+ CM_LOCATION_FROM_PART_Y  =  0.0
+ CM_LOCATION_FROM_PART_Z  =  0.0
+ IXX                      =  1391.264352341
+ IYY                      =  1391.264352341
+ IZZ                      =  2.4078954946
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$------------------------------------------------------------------LINK_GEOMETRY
+[LINK_GEOMETRY]
+ USAGE       =  'prod'
+ PART        =  'prod'
+ SYMMETRY    =  'left/right'
+ RADIUS      =  6.35
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'spindle'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.2924739931
+$ Part location is dependent.
+$   X,Y,Z location = -512.0, -700.0, 155.2
+$ Part orientation is dependent.
+$   ZP vector = 0.0,  -1.0,  0.0
+$   XP vector = 1.0,  0.0,  0.0
+ CM_LOCATION_FROM_PART_X  =  0.0
+ CM_LOCATION_FROM_PART_Y  =  0.0
+ CM_LOCATION_FROM_PART_Z  =  -36.8999999997
+ IXX                      =  152.9728126858
+ IYY                      =  152.9728126858
+ IZZ                      =  22.9068432732
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'tierod_inner'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  1.0
+$ Part location is dependent.
+$   X,Y,Z location = -415.0, -477.4, 77.4
+$ Part orientation is dependent.
+$   ZP vector = 0.0,  -1.0,  0.0
+$   XP vector = 1.0,  0.0,  0.0
+ CM_LOCATION_FROM_PART_X  =  0.0
+ CM_LOCATION_FROM_PART_Y  =  0.0
+ CM_LOCATION_FROM_PART_Z  =  0.0
+ IXX                      =  1.0
+ IYY                      =  1.0
+ IZZ                      =  1.0
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$------------------------------------------------------------------LINK_GEOMETRY
+[LINK_GEOMETRY]
+ USAGE       =  'tierod_inner'
+ PART        =  'tierod_inner'
+ SYMMETRY    =  'left/right'
+ RADIUS      =  6.35
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'tierod_outer'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.157565497
+$ Part location is dependent.
+$   X,Y,Z location = -415.0, -477.4, 77.4
+$ Part orientation is dependent.
+$   ZP vector = 0.0,  -1.0,  0.0
+$   XP vector = 1.0,  0.0,  0.0
+ CM_LOCATION_FROM_PART_X  =  0.0
+ CM_LOCATION_FROM_PART_Y  =  0.0
+ CM_LOCATION_FROM_PART_Z  =  81.8714609761
+ IXX                      =  350.0657775592
+ IYY                      =  350.0657775592
+ IZZ                      =  3.0562942843
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$------------------------------------------------------------------LINK_GEOMETRY
+[LINK_GEOMETRY]
+ USAGE       =  'tierod_outer'
+ PART        =  'tierod_outer'
+ SYMMETRY    =  'left/right'
+ RADIUS      =  6.35
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'upper_control_arm'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.2016610319
+$ Part location is dependent.
+$   X,Y,Z location = -512.0, -338.0666666667, 269.7666666667
+$ Part orientation is dependent.
+$   ZP vector = 0.0,  -0.998852804,  0.0478860721
+$   XP vector = -1.0,  5.8643524941E-18,  1.2232418893E-16
+ CM_LOCATION_FROM_PART_X  =  -1.120575756
+ CM_LOCATION_FROM_PART_Y  =  0.0
+ CM_LOCATION_FROM_PART_Z  =  39.398415013
+ IXX                      =  1123.6466720659
+ IYY                      =  2568.4585578791
+ IZZ                      =  1448.7300302903
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$------------------------------------------------------------------LINK_GEOMETRY
+[LINK_GEOMETRY]
+ USAGE       =  'uca_front'
+ PART        =  'upper_control_arm'
+ SYMMETRY    =  'left/right'
+ RADIUS      =  6.35
+$------------------------------------------------------------------LINK_GEOMETRY
+[LINK_GEOMETRY]
+ USAGE       =  'uca_rear'
+ PART        =  'upper_control_arm'
+ SYMMETRY    =  'left/right'
+ RADIUS      =  6.35
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'upright'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.2461895822
+$ Part location is dependent.
+$   X,Y,Z location = -512.0, -700.0, 155.2
+ PART_ORI_ZP1             =  0.0
+ PART_ORI_ZP2             =  0.0
+ PART_ORI_ZP3             =  1.0
+ PART_ORI_XP1             =  1.0
+ PART_ORI_XP2             =  0.0
+ PART_ORI_XP3             =  0.0
+ CM_LOCATION_FROM_PART_X  =  25.5726778614
+ CM_LOCATION_FROM_PART_Y  =  56.1966220414
+ CM_LOCATION_FROM_PART_Z  =  -8.7895865889
+ IXX                      =  508.3812105298
+ IYY                      =  472.3487948458
+ IZZ                      =  150.6425395719
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$-------------------------------------------------------------------ARM_GEOMETRY
+[ARM_GEOMETRY]
+ USAGE       =  'upright_1'
+ PART        =  'upright'
+ SYMMETRY    =  'left/right'
+ THICKNESS   =  1.27
+$-------------------------------------------------------------------ARM_GEOMETRY
+[ARM_GEOMETRY]
+ USAGE       =  'upright_2'
+ PART        =  'upright'
+ SYMMETRY    =  'left/right'
+ THICKNESS   =  1.27
+$-------------------------------------------------------------------ARM_GEOMETRY
+[ARM_GEOMETRY]
+ USAGE       =  'upright_3'
+ PART        =  'upright'
+ SYMMETRY    =  'left/right'
+ THICKNESS   =  1.27
+$-------------------------------------------------------------------ARM_GEOMETRY
+[ARM_GEOMETRY]
+ USAGE       =  'upright_4'
+ PART        =  'upright'
+ SYMMETRY    =  'left/right'
+ THICKNESS   =  1.27
+$------------------------------------------------------------------PART_ASSEMBLY
+[PART_ASSEMBLY]
+ USAGE                    =  'upright_bracket'
+ SYMMETRY                 =  'left/right'
+ MODE                     =  'rigid'
+$ Rigid body data:
+ MASS                     =  0.45359237
+$ Part location is dependent.
+$   X,Y,Z location = -512.0, -716.0, 27.4
+ PART_ORI_ZP1             =  0.0
+ PART_ORI_ZP2             =  0.0
+ PART_ORI_ZP3             =  1.0
+ PART_ORI_XP1             =  1.0
+ PART_ORI_XP2             =  0.0
+ PART_ORI_XP3             =  0.0
+ CM_LOCATION_FROM_PART_X  =  0.0
+ CM_LOCATION_FROM_PART_Y  =  0.0
+ CM_LOCATION_FROM_PART_Z  =  0.0
+ IXX                      =  292.6396534292
+ IYY                      =  292.6396534292
+ IZZ                      =  292.6396534292
+ IXY                      =  0.0
+ IZX                      =  0.0
+ IYZ                      =  0.0
+$---------------------------------------------------------------NSPRING_ASSEMBLY
+[NSPRING_ASSEMBLY]
+ DEFINITION     =  '.ACAR.forces.ac_spring'
+ USAGE          =  'ride_spring'
+ SYMMETRY       =  'left'
+ PROPERTY_FILE  =  'mdids://fsae_2012/springs.tbl/msc_0001.spr'
+ VALUE_TYPE     =  'preload'
+ USER_VALUE     =  189.5
+$---------------------------------------------------------------NSPRING_ASSEMBLY
+[NSPRING_ASSEMBLY]
+ DEFINITION     =  '.ACAR.forces.ac_spring'
+ USAGE          =  'ride_spring'
+ SYMMETRY       =  'right'
+ PROPERTY_FILE  =  'mdids://fsae_2012/springs.tbl/msc_0001.spr'
+ VALUE_TYPE     =  'preload'
+ USER_VALUE     =  2000.0
+$---------------------------------------------------------------NSPRING_ASSEMBLY
+[NSPRING_ASSEMBLY]
+ DEFINITION     =  '.ACAR.forces.ac_spring'
+ USAGE          =  'ride_spring1'
+ SYMMETRY       =  'left/right'
+ PROPERTY_FILE  =  'mdids://fsae_2012/springs.tbl/msc_0001.spr'
+ VALUE_TYPE     =  'preload'
+ USER_VALUE     =  2000.0
+$---------------------------------------------------------------NSPRING_ASSEMBLY
+[NSPRING_ASSEMBLY]
+ DEFINITION     =  '.ACAR.forces.ac_spring'
+ USAGE          =  'ride_spring2'
+ SYMMETRY       =  'left/right'
+ PROPERTY_FILE  =  'mdids://fsae_2012/springs.tbl/msc_0001.spr'
+ VALUE_TYPE     =  'preload'
+ USER_VALUE     =  2000.0
+$---------------------------------------------------------------NSPRING_ASSEMBLY
+[NSPRING_ASSEMBLY]
+ DEFINITION     =  '.ACAR.forces.ac_spring'
+ USAGE          =  'ride_spring5'
+ SYMMETRY       =  'single'
+ PROPERTY_FILE  =  'mdids://fsae_2012/springs.tbl/msc_0001.spr'
+ VALUE_TYPE     =  'preload'
+ USER_VALUE     =  2000.0
+
+$----------------------------------------------------------------DAMPER_ASSEMBLY
+[DAMPER_ASSEMBLY]
+ DEFINITION     =  '.ACAR.forces.ac_damper'
+ USAGE          =  'ride_damper'
+ SYMMETRY       =  'left/right'
+ PROPERTY_FILE  =  'mdids://fsae_2012/dampers.tbl/msc_0001.dpr'
+$----------------------------------------------------------------DAMPER_ASSEMBLY
+[DAMPER_ASSEMBLY]
+ DEFINITION     =  '.ACAR.forces.ac_damper'
+ USAGE          =  'ride_damper2'
+ SYMMETRY       =  'left/right'
+ PROPERTY_FILE  =  'mdids://fsae_2012/dampers.tbl/msc_0001.dpr'
+$--------------------------------------------------------------BUMPSTOP_ASSEMBLY
+[BUMPSTOP_ASSEMBLY]
+ DEFINITION     =  '.ACAR.forces.ac_bumpstop'
+ USAGE          =  'jounce_stop'
+ SYMMETRY       =  'left/right'
+ PROPERTY_FILE  =  'mdids://fsae_2012/bumpstops.tbl/mdi_0001.bum'
+ DISTANCE_TYPE  =  'clearance'
+ USER_DISTANCE  =  250.0
+$---------------------------------------------------------------ADJUSTABLE_FORCE
+[ADJUSTABLE_FORCE]
+ DEFINITION     =  '.ACAR.forces.ac_aforce'
+ USAGE          =  'camber_adjuster'
+ SYMMETRY       =  'left/right'
+ DESIRED_VALUE  =  0.0
+ STIFFNESS      =  9.9999999999E+05
+ DAMPING        =  19999.999999
+ LOCK           =  1
+$---------------------------------------------------------------ADJUSTABLE_FORCE
+[ADJUSTABLE_FORCE]
+ DEFINITION     =  '.ACAR.forces.ac_aforce'
+ USAGE          =  'toe_adjuster'
+ SYMMETRY       =  'left/right'
+ DESIRED_VALUE  =  0.0
+ STIFFNESS      =  9.9999999999E+05
+ DAMPING        =  19999.999999
+ LOCK           =  1
+$----------------------------------------------------------------------PARAMETER
+[PARAMETER]
+{parameter_name                  symmetry       type       value}
+ 'driveline_active            '  'single    '   'integer'  0
+ 'kinematic_flag              '  'single    '   'integer'  0
+ 'adjuster_active             '  'single    '   'integer'  1
+ 'subframe_active             '  'single    '   'integer'  0
+ 'camber_adjuster             '  'left/right'   'real'     716.0
+ 'toe_adjuster                '  'left/right'   'real'     345.2
+ 'camber_adjust               '  'left/right'   'real'     0.0
+ 'camber_angle                '  'left/right'   'real'     0.0
+ 'drive_shaft_offset          '  'left/right'   'real'     75.0
+ 'toe_adjust                  '  'left/right'   'real'     0.0
+ 'toe_angle                   '  'left/right'   'real'     0.0
