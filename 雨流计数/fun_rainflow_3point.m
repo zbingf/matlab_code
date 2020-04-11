@@ -1,8 +1,10 @@
-clear;clc
-% C=xlsread('load_F');%%%%%%%%%在此修改加载的文件名，数据格式一直才可正确运算%%%
-% rand(1,1000)*5  % 随机生成数组
-load('test_data.mat')
-C = test_data';
+function X = fun_rainflow_3point(x)
+[l1,l2] = size(x);
+if l1 ==1 && l2>1
+    C = x';
+else
+    C = x;
+end
 B=C;A=C; % 赋值
 q=length(A); % 数据长度
 %三点循环计数法；部分参考SAE ASTM标准
@@ -27,7 +29,7 @@ B(isnan(B))=[]; % 去掉无效点
 [a,b]=max(B); % a最大值, b其位置
 n=length(B);% 数据长度
 % 以最大值为中点,将数据拆分成两半
-B1=B(b:n); 
+B1=B(b:n);
 B2=B(1:b);
 % 重新拼接,将最大值放置在最前面
 B=[B1;B2];
@@ -63,7 +65,7 @@ while length(B)>=1
                 % 第一段 < 第二段 高度
                 F=[F;s1]; % 增加幅值 ,第一段
                 J=[J;e3]; % 增加均值 ,第一段
-                B(j)=[]; 
+                B(j)=[];
                 B(j)=[]; % 删除第一段线的两点的数据
                 n=length(B); % 重新计算数据长度
                 break; % 结束for 进入下一个while循环
@@ -78,11 +80,12 @@ end
 %画图像 三维hist三维图像
 % 均值,幅值
 X=[J,F];
-figure;hist3(X,[30 30]);
-xlabel('均值');
-title('雨流计数法-三点循环计数运算逻辑');
-ylabel('幅值');
-zlabel('循环次数');
+end
+% figure;hist3(X,[30 30]);
+% xlabel('均值');
+% title('雨流计数法-三点循环计数运算逻辑');
+% ylabel('幅值');
+% zlabel('循环次数');
 %% 检验说明 %%
 % load_Ftest运算与手算一致，与其他语言的计算结果幅值F，均值J一直，其他的数据也证明是可以正确运行的
 %%%%存在的问题
