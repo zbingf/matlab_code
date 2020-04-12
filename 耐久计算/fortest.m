@@ -33,7 +33,9 @@ X2 = fun_rainflow_3point(C);
 sigma_b = 1400 ; 
 sigma_eqv = fun_gerber(X,sigma_b);
 %% PDI
-damage = fun_pdi_cal(sigma_eqv*100,-5,5000);
+b = 5000;
+k = -5;
+damage = fun_pdi_cal(sigma_eqv,k,b);
 damage
 
 %% S-N
